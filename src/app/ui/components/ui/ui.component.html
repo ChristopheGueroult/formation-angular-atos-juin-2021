@@ -1,7 +1,15 @@
 <header class="fixed-top">
   <!-- button to open or close nav aside -->
   <span (click)="toggle()">
-    <ng-content select=".tr-btn"></ng-content>
+    <ng-container *ngIf="open; then thenBlock; else elseBlock"></ng-container>
+
+    <ng-template #thenBlock>
+      <ng-content select=".tr-close"></ng-content>
+    </ng-template>
+    <ng-template #elseBlock>
+      <ng-content select=".tr-open"></ng-content>
+    </ng-template>
+    <!-- t'es bien parti mon poto, on pousse le bouchon avec une strucure ngif then else -->
   </span>
 
   <!-- open bar, tu peux projeter ici tout ce que tu veux -->
