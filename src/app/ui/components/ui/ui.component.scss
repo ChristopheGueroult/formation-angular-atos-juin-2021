@@ -1,0 +1,74 @@
+@import "~src/stylings/layout";
+/// Description design of user interface
+header {
+  height: 65px;
+  background: var(--app-light);
+  padding: 0 $gutter;
+  display: flex;
+  align-items: center;
+}
+
+main {
+  background: var(--app-darklight);
+  min-height: calc(100vh - 65px);
+  padding-top: 65px;
+}
+
+aside {
+  background: var(--app-darklight2);
+  width: 250px;
+  min-height: 100vh;
+  position: fixed;
+  z-index: 1000;
+  .scroller {
+    overflow-y: auto;
+    max-height: 100vh;
+    padding-bottom: 65px;
+  }
+}
+
+.close-aside aside {
+  width: 0;
+  overflow: hidden;
+}
+
+.close-aside .shadow {
+  display: none;
+}
+
+.shadow {
+  background: var(--app-dark);
+  opacity: 0.8;
+  width: 100%;
+  min-height: 100vh;
+  z-index: 1000;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 65px);
+}
+
+.contents {
+  flex-grow: 1;
+}
+
+footer {
+  background: var(--app-light);
+}
+
+@media (min-width: $md-breakpoint) {
+  .shadow {
+    display: none;
+  }
+  .contents,
+  footer {
+    margin-left: 250px;
+  }
+
+  .close-aside .contents,
+  .close-aside footer {
+    margin-left: 0;
+  }
+}
