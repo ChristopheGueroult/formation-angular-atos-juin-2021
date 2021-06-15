@@ -1,0 +1,19 @@
+.ui {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.close-aside {
+  height: 0px;
+  overflow: hidden;
+}
+
+nav {
+  background: var(--app-darklight2);
+}
+
+main {
+  flex-grow: 1;
+  background: var(--app-darklight);
+}
