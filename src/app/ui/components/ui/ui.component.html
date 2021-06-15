@@ -1,6 +1,9 @@
 <header class="fixed-top">
 
-  header
+  <!-- open bar, tu peux projeter ici tout ce que tu veux -->
+  <!-- transclusion avec ng-content -->
+  <ng-content select=".tr-header"></ng-content>
+
 </header>
 <main>
 
@@ -11,7 +14,7 @@
   <aside>
     <div class="scroller">
 
-      nav
+      <ng-content select=".tr-nav"></ng-content>
 
     </div>
   </aside>
@@ -20,13 +23,13 @@
 
     <div class="contents">
 
-      pages contents
+      <ng-content select=".tr-content"></ng-content>
 
     </div>
 
     <footer>
 
-      footer
+      <ng-content select=".tr-footer"></ng-content>
 
     </footer>
 
