@@ -7,7 +7,8 @@
     "build": "ng build",
     "buildProd": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "compodoc": "compodoc -p tsconfig.json -o -s"
   },
   "private": true,
   "dependencies": {
@@ -27,6 +28,7 @@
     "@angular-devkit/build-angular": "~12.0.4",
     "@angular/cli": "~12.0.4",
     "@angular/compiler-cli": "~12.0.4",
+    "@compodoc/compodoc": "^1.1.11",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "jasmine-core": "~3.7.0",
