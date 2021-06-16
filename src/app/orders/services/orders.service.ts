@@ -12,8 +12,6 @@ export class OrdersService {
   private collection$!: Observable<Order[]>;
   private urlApi = environment.urlApi;
   constructor(private http: HttpClient) {
-    console.log('service order instancied');
-
     this.collection = this.http.get<Order[]>(`${this.urlApi}/orders`);
   }
 
