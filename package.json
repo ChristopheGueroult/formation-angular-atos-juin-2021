@@ -8,7 +8,8 @@
     "buildProd": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "compodoc": "compodoc -p tsconfig.json -o -s"
+    "compodoc": "compodoc -p tsconfig.json -o -s",
+    "jsonServer": "json-server --watch mock_db/db.json"
   },
   "private": true,
   "dependencies": {
