@@ -1,4 +1,4 @@
-<app-template-full-width [title]="myTitle" *ngIf="collection">
+<app-template-full-width [title]="myTitle" *ngIf="collection$ | async as collection">
   <button (click)="changeTitle()">change title</button>
   <!-- tout ici constitue le contenu de cette page et est projetté -->
   <!-- à la place de ng-content dans template-full-width.component.html -->
@@ -9,8 +9,8 @@
       <td>{{ item.client }}</td>
       <td>{{ item.nbJours }}</td>
       <td>{{ item.tjmHt }}</td>
-      <td>total ht</td>
-      <td>total ttc</td>
+      <td>{{ item | total }}</td>
+      <td>{{ item | total: true }}</td>
       <td>{{ item.state }}</td>
     </tr>
 

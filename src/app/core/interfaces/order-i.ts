@@ -9,4 +9,6 @@ export interface OrderI {
   client: string;
   comment: string;
   id: number;
+  totalHT(): number;
+  totalTTC(): number;
 }
