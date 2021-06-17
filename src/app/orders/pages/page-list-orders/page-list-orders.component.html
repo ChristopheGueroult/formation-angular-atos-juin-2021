@@ -1,6 +1,7 @@
-<app-template-full-width [title]="myTitle">
+<app-template-full-width [title]="myTitle" *ngIf="collection">
   <button (click)="changeTitle()">change title</button>
   <!-- tout ici constitue le contenu de cette page et est projetté -->
   <!-- à la place de ng-content dans template-full-width.component.html -->
-  <p style="background: red;">mlsqjdmfjqmlsdjfm</p>
+  <app-table-light [collection]="collection" [headers]="headers"></app-table-light>
+  <app-btn></app-btn>
 </app-template-full-width>
