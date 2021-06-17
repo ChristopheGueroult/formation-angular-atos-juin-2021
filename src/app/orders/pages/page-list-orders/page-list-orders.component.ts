@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
 import { OrdersService } from '../../services/orders.service';
 
@@ -15,6 +16,7 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
   private sub!: Subscription;
   public myTitle = 'List Orders';
   // public collection!: Order[];
+  public states = Object.values(StateOrder);
   public collection$!: Observable<Order[]>;
   public headers = [
     'Type',
@@ -39,6 +41,14 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
 
   public changeTitle(): void {
     this.myTitle = 'My List Orders';
+  }
+
+  public changeState(item: Order, event: any): void {
+    const state = event.target.value;
+    this.ordersService.changeState(item, state).subscribe((res) => {
+      // gerer les code erreur retournées par l'api
+      item = res;
+    });
   }
 
   ngOnDestroy(): void {
