@@ -2,15 +2,16 @@
   <button (click)="changeTitle()">change title</button>
   <!-- tout ici constitue le contenu de cette page et est projetté -->
   <!-- à la place de ng-content dans template-full-width.component.html -->
+  <!-- {{ collection | json }} -->
   <app-table-light [headers]="headers">
 
     <tr *ngFor="let item of collection">
       <td>{{ item.typePresta }}</td>
-      <td>{{ item.client }}</td>
+      <td>{{ item.client | uppercase }}</td>
       <td>{{ item.nbJours }}</td>
-      <td>{{ item.tjmHt }}</td>
-      <td>{{ item | total }}</td>
-      <td>{{ item | total: true }}</td>
+      <td>{{ item.tjmHt | currency }}</td>
+      <td>{{ item | total | currency }}</td>
+      <td>{{ item | total: true | currency }}</td>
       <td>{{ item.state }}</td>
     </tr>
 
