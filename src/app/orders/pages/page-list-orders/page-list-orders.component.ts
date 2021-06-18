@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
@@ -19,6 +20,7 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
   public states = Object.values(StateOrder);
   public collection$!: Observable<Order[]>;
   public headers = [
+    'Action',
     'Type',
     'Client',
     'NbJours',
@@ -27,7 +29,7 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
     'Total TTC',
     'State',
   ];
-  constructor(private ordersService: OrdersService) {
+  constructor(private ordersService: OrdersService, private router: Router) {
     this.collection$ = this.ordersService.collection;
     // this.ordersService.collection.subscribe((data) => {
     //   this.collection = data;
@@ -49,6 +51,10 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
       // gerer les code erreur retournées par l'api
       Object.assign(item, res);
     });
+  }
+
+  public goToEdit(item: Order): void {
+    this.router.navigate(['orders', 'edit', item.id]);
   }
 
   ngOnDestroy(): void {

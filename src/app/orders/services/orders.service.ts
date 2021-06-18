@@ -53,4 +53,7 @@ export class OrdersService {
   // delete item in collection
 
   // get item by id in collection
+  public getItemById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.urlApi}/orders/${id}`);
+  }
 }
