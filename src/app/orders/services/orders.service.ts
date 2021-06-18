@@ -46,6 +46,9 @@ export class OrdersService {
   }
 
   // add item in collection
+  public add(item: Order): Observable<any> {
+    return this.http.post<any>(`${this.urlApi}/orders`, item);
+  }
 
   // delete item in collection
 

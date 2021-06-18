@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
 
   <div class="form-group">
     <label for="typePresta">type</label>
@@ -29,7 +29,7 @@
   <div class="form-group">
     <label for="state">state</label>
     <select formControlName="state" class="form-control" id="state">
-      <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+      <option *ngFor="let state of states" [ngValue]="state">{{ state }}</option>
     </select>
   </div>
 
