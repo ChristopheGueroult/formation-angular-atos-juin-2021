@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
 import { environment } from 'src/environments/environment';
@@ -11,27 +11,39 @@ import { environment } from 'src/environments/environment';
 })
 export class OrdersService {
   // private collection
-  private collection$!: Observable<Order[]>;
+  private collection$: BehaviorSubject<Order[]> = new BehaviorSubject<Order[]>(
+    []
+  );
   private urlApi = environment.urlApi;
   constructor(private http: HttpClient) {
-    this.collection = this.http.get<Order[]>(`${this.urlApi}/orders`).pipe(
-      map((tab) => {
-        return tab.map((obj) => {
-          return new Order(obj);
-        });
-      })
-    );
+    this.refreshCollection();
+  }
+
+  // refresh collection
+  public refreshCollection(): void {
+    this.http
+      .get<Order[]>(`${this.urlApi}/orders`)
+      .pipe(
+        map((tab) => {
+          return tab.map((obj) => {
+            return new Order(obj);
+          });
+        })
+      )
+      .subscribe((data) => {
+        this.collection$.next(data);
+      });
   }
 
   // get collection
-  public get collection(): Observable<Order[]> {
+  public get collection(): Subject<Order[]> {
     return this.collection$;
   }
 
   // set collection
-  public set collection(col: Observable<Order[]>) {
-    this.collection$ = col;
-  }
+  // public set collection(col: Subject<Order[]>) {
+  //   this.collection$ = col;
+  // }
 
   // change  state item
   public changeState(item: Order, state: StateOrder): Observable<any> {
@@ -42,15 +54,36 @@ export class OrdersService {
 
   // update item in collection
   public update(item: Order): Observable<any> {
-    return this.http.put<any>(`${this.urlApi}/orders/${item.id}`, item);
+    return this.http.put<any>(`${this.urlApi}/orders/${item.id}`, item).pipe(
+      tap((data) => {
+        // code error de l'api on les gere ici
+        // si ok
+        this.refreshCollection();
+      })
+    );
   }
 
   // add item in collection
   public add(item: Order): Observable<any> {
-    return this.http.post<any>(`${this.urlApi}/orders`, item);
+    return this.http.post<any>(`${this.urlApi}/orders`, item).pipe(
+      tap((data) => {
+        // code error de l'api on les gere ici
+        // si ok
+        this.refreshCollection();
+      })
+    );
   }
 
   // delete item in collection
+  public delete(item: Order): Observable<any> {
+    return this.http.delete<any>(`${this.urlApi}/orders/${item.id}`).pipe(
+      tap((data) => {
+        // code error de l'api on les gere ici
+        // si ok
+        this.refreshCollection();
+      })
+    );
+  }
 
   // get item by id in collection
   public getItemById(id: number): Observable<any> {

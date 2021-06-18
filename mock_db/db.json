@@ -56,29 +56,9 @@
       "tva": 20,
       "state": "OPTION",
       "typePresta": "formation",
-      "client": "Capgemini",
-      "comment": "dfghs",
-      "id": 6
-    },
-    {
-      "tjmHt": 1200,
-      "nbJours": 10,
-      "tva": 20,
-      "state": "OPTION",
-      "typePresta": "coaching",
-      "client": "Modis",
-      "comment": "dffgr",
-      "id": 7
-    },
-    {
-      "tjmHt": 1200,
-      "nbJours": 1,
-      "tva": 20,
-      "state": "OPTION",
-      "typePresta": "formation",
       "client": "M2i",
       "comment": null,
-      "id": 8
+      "id": 6
     }
   ],
   "clients": [

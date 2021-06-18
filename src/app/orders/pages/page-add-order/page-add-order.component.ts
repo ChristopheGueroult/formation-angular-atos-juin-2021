@@ -16,7 +16,6 @@ export class PageAddOrderComponent implements OnInit {
 
   public action(item: Order): void {
     this.ordersService.add(item).subscribe((res) => {
-      // gere les codes erreur retournés par l'api
       this.router.navigate(['orders']);
     });
   }
