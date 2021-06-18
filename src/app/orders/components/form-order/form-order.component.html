@@ -1,0 +1,43 @@
+<form>
+
+  <div class="form-group">
+    <label for="typePresta">type</label>
+    <input type="text" class="form-control" id="typePresta">
+
+  </div>
+
+  <div class="form-group">
+    <label for="client">client</label>
+    <input type="text" class="form-control" id="client">
+
+  </div>
+
+  <div class="form-group">
+    <label for="nbJours">nbJours</label>
+    <input type="number" class="form-control" id="nbJours">
+  </div>
+
+  <div class="form-group">
+    <label for="tjmHt">tjmHt</label>
+    <input type="number" class="form-control" id="tjmHt">
+  </div>
+
+  <div class="form-group">
+    <label for="tva">tva</label>
+    <input type="number" class="form-control" id="tva">
+  </div>
+
+  <div class="form-group">
+    <label for="state">state</label>
+    <select class="form-control" id="state">
+      <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="comment">comment</label>
+    <textarea class="form-control" id="comment"></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
